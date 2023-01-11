@@ -5,11 +5,11 @@ const User = require('../models/user');
 
 //authetication using passport
 passport.use(new LocalStrategy({
-        usernameField: 'email'
+        usernameField: 'email' // the field that is going to be unique will be used here
     },
     function(email, password, done){
         //find a user & establish identity
-        User.findOne({email: email}, function(err, user){
+        User.findOne({email: email}, function(err, user){ // here 2nd email is the email passed on and first(key) is the value from model ie. db
             if(err){
                 console.log('Error in finding user --> Passport');
                 return done(err);
@@ -43,7 +43,7 @@ passport.deserializeUser(function(id, done){
     });
 });
 
-
+//check if the user is authenticated; this func will also be used as a middleware
 passport.checkAuthentication = function(req, res, next){
     //if the user is signed in, then pass on the request to the next function(controller's action)
     if(req.isAuthenticated()){

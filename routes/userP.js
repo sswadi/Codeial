@@ -5,7 +5,7 @@ const passport = require('passport');
 
 const userProfile = require('../controllers/userProfile_controller');
 
-router.get('/profile', passport.checkAuthentication, userProfile.userProfile);
+router.get('/profile', passport.checkAuthentication, userProfile.userProfile); //this ensures the profile page is accessible only when the user is signed in
 
 
 router.get('/sign-up', userProfile.signUp);
